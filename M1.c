@@ -33,7 +33,7 @@ int *avgSignal(int *signal, int *kernel)
 int main()
 {
     int signal[] = {1, 2, 3, 4, 5, 6, 7};
-    int kernel[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int kernel[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     kernelLength = sizeof(kernel) / sizeof(int);
     signalLength = sizeof(signal) / sizeof(int);
     int *result = avgSignal(signal, kernel);
