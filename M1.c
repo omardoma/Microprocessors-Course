@@ -16,8 +16,7 @@ int avgElement(int midIndex, int *signal)
     {
         sum += signal[i];
     }
-    printf("%d", (i - intersectionIndex));
-    printf("%s", " ");
+    printf("%d ", (i - intersectionIndex));
     return (sum / (i - intersectionIndex));
 }
 
@@ -25,7 +24,7 @@ int *avgSignal(int *signal, int *kernel)
 {
     int midIndex = (kernelLength / 2) - 1;
     int *result = malloc(signalLength * sizeof(int));
-    printf("%s", "Number of Intersection elements in each iteration: ");
+    printf("Number of Intersection elements in each iteration: ");
     for (int i = 0; i < signalLength; i++)
     {
         result[i] = avgElement(midIndex--, signal);
@@ -43,8 +42,7 @@ int main()
     printf("\nAverage Signal: ");
     for (int i = 0; i < signalLength; i++)
     {
-        printf("%d", result[i]);
-        printf("%s", " ");
+        printf("%d ", result[i]);
     }
     return 0;
 }
