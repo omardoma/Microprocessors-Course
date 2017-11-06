@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int avgElement(int, int *, int *);
+int avgElement(int, int *);
 int *avgSignal(int *, int *);
 
 int kernelLength;
 int signalLength;
 
-int avgElement(int midIndex, int *signal, int *kernel)
+int avgElement(int midIndex, int *signal)
 {
     int sum = 0;
     int intersectionIndex = midIndex < 0 ? -1 * midIndex : 0;
@@ -28,7 +28,7 @@ int *avgSignal(int *signal, int *kernel)
     printf("%s", "Number of Intersection elements in each iteration: ");
     for (int i = 0; i < signalLength; i++)
     {
-        result[i] = avgElement(midIndex--, signal, kernel);
+        result[i] = avgElement(midIndex--, signal);
     }
     return result;
 }
