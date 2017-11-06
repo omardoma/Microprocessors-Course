@@ -1,43 +1,49 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int avgElement(int, int *, int[], int[]);
-void avgSignal(int[], int[]);
+int avgElement(int, int *, int *);
+int *avgSignal(int *, int *);
 
-int avgElement(int midIndex, int *j, int signal[], int kernel[])
+int kernelLength;
+int signalLength;
+
+int avgElement(int midIndex, int *signal, int *kernel)
 {
     int sum = 0;
+    int intersectionIndex = midIndex < 0 ? -1 * midIndex : 0;
     int i;
-    for (i = *j; i < 7 && i < 10 - midIndex; i++)
+    for (i = intersectionIndex; i < signalLength && i < (kernelLength - midIndex); i++)
     {
-        if (midIndex < 0)
-        {
-            (*j)++;
-        }
         sum += signal[i];
     }
-
-    return (sum / ((i - *j) + 1));
+    printf("%d", (i - intersectionIndex));
+    printf("%s", " ");
+    return (sum / (i - intersectionIndex));
 }
 
-void avgSignal(int signal[], int kernel[])
+int *avgSignal(int *signal, int *kernel)
 {
-    int midIndex = (10 / 2) - 1;
-    int j = 0;
-    for (int i = 0; i < 10; i++)
+    int midIndex = (kernelLength / 2) - 1;
+    int *result = malloc(signalLength * sizeof(int));
+    printf("%s", "Number of Intersection elements in each iteration: ");
+    for (int i = 0; i < signalLength; i++)
     {
-        signal[i] = avgElement(midIndex, &j, signal, kernel);
-        midIndex--;
+        result[i] = avgElement(midIndex--, signal, kernel);
     }
+    return result;
 }
 
 int main()
 {
-    int signal[7] = {1, 2, 3, 4, 5, 6, 7};
-    int kernel[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    avgSignal(signal, kernel);
-    for (int i = 0; i < 7; i++)
+    int signal[] = {1, 2, 3, 4, 5, 6, 7};
+    int kernel[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    kernelLength = sizeof(kernel) / sizeof(int);
+    signalLength = sizeof(signal) / sizeof(int);
+    int *result = avgSignal(signal, kernel);
+    printf("\nAverage Signal: ");
+    for (int i = 0; i < signalLength; i++)
     {
-        printf("%d", signal[i]);
+        printf("%d", result[i]);
         printf("%s", " ");
     }
     return 0;
