@@ -29,7 +29,9 @@ main()
     int *result;
     int kernel[10];
     int signal[7];
-    int i = 0;
+    int i;
+    int midIndex;
+    
     // signal[0] = 1;
     // signal[1] = 2;
     // signal[2] = 3;
@@ -48,11 +50,10 @@ main()
     // kernel[7] = 1;
     // kernel[8] = 1;
     // kernel[9] = 1;
+    // int midIndex = (kernelLength / 2) - 1;
+    // kernelLength = sizeof(kernel) / sizeof(int);
+    // signalLength = sizeof(signal) / sizeof(int);
 
-    kernelLength = sizeof(kernel) / sizeof(int);
-    signalLength = sizeof(signal) / sizeof(int);
-
-    int midIndex = (kernelLength / 2) - 1;
     result = malloc(signalLength * sizeof(int));
     while (i < signalLength)
     {
@@ -60,8 +61,4 @@ main()
         i++;
     }
 
-    for (i = 0; i < signalLength; i++)
-    {
-        printf("%d ", result[i]);
-    }
 }
