@@ -34,30 +34,24 @@ int main()
     }
     clock_t Time2 = clock();
     clock_t Time3 = clock();
+    
     // YOUR CODE HERE
     __m128 *lvfA, *lvfB;
     float *lafResult;
-    int count = 0;
     for (int i=0; i < MAX_DIM; i++)
     {
-        int sum = 0;
         for (int j = 0; j < MAX_DIM; j++)
         {
             for (int k = 0; k < MAX_DIM; k += 4)
             {
-                // float lafResult[] = {0.0f, 0.0f, 0.0f, 0.0f};
                 lvfA = (__m128 *)&a[i];
                 lvfB = (__m128 *)&b[j];
-                // lvfB = _mm_set_ps(b[j][i], b[j + 1][i], b[j + 2][i], b[j + 3][i]);
                 __m128 lvfA_mul_B = _mm_mul_ps(*lvfA, *lvfB);
-                // _mm_store_ps(lafResult, lvfA_mul_B);
                 lafResult = (float*)&lvfA_mul_B;
                 d[i][j] += lafResult[0] + lafResult[1] + lafResult[2] + lafResult[3];
             }
             lvfA++;
-            lvfB++;
-
-            
+            lvfB++;    
         }
 
     }
